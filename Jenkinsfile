@@ -1,8 +1,7 @@
 pipeline {
-    agent any
+    agent { label 'windows' } // your Windows node label
 
     environment {
-        // Use forward slashes or double backslashes for Windows paths
         DOCKER_COMPOSE = "C:/Users/darsh/user-data-app/docker-compose.yml"
     }
 
@@ -15,7 +14,6 @@ pipeline {
 
         stage('Build & Deploy') {
             steps {
-                // Use 'bat' for Windows instead of 'sh'
                 bat "docker-compose -f ${DOCKER_COMPOSE} down"
                 bat "docker-compose -f ${DOCKER_COMPOSE} up -d --build"
             }
@@ -23,11 +21,7 @@ pipeline {
     }
 
     post {
-        success {
-            echo "Deployment Successful!"
-        }
-        failure {
-            echo "Deployment Failed!"
-        }
+        success { echo "Deployment Successful!" }
+        failure { echo "Deployment Failed!" }
     }
 }
