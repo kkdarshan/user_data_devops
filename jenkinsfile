@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_COMPOSE = "/usr/local/bin/docker-compose" // path to docker-compose
+        DOCKER_COMPOSE = "C:\Users\darsh\user-data-app\docker-compose.yml" // path to docker-compose
     }
 
     stages {
