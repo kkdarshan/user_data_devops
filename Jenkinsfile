@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_COMPOSE = "/var/lib/jenkins/user-data-app/docker-compose.yml"
+        DOCKER_COMPOSE = "${WORKSPACE}/docker-compose.yml"
     }
 
     stages {
