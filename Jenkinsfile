@@ -2,7 +2,8 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_COMPOSE = "C:\Users\darsh\user-data-app\docker-compose.yml" // path to docker-compose
+        // Use forward slashes or double backslashes for Windows paths
+        DOCKER_COMPOSE = "C:/Users/darsh/user-data-app/docker-compose.yml"
     }
 
     stages {
@@ -14,8 +15,9 @@ pipeline {
 
         stage('Build & Deploy') {
             steps {
-                sh "${DOCKER_COMPOSE} down"
-                sh "${DOCKER_COMPOSE} up -d --build"
+                // Use 'bat' for Windows instead of 'sh'
+                bat "docker-compose -f ${DOCKER_COMPOSE} down"
+                bat "docker-compose -f ${DOCKER_COMPOSE} up -d --build"
             }
         }
     }
