@@ -1,8 +1,8 @@
 pipeline {
-    agent { label 'windows' } // your Windows node label
+    agent any
 
     environment {
-        DOCKER_COMPOSE = "C:/Users/darsh/user-data-app/docker-compose.yml"
+        DOCKER_COMPOSE = "/var/lib/jenkins/user-data-app/docker-compose.yml"
     }
 
     stages {
@@ -14,8 +14,8 @@ pipeline {
 
         stage('Build & Deploy') {
             steps {
-                bat "docker-compose -f ${DOCKER_COMPOSE} down"
-                bat "docker-compose -f ${DOCKER_COMPOSE} up -d --build"
+                sh "docker-compose -f ${DOCKER_COMPOSE} down"
+                sh "docker-compose -f ${DOCKER_COMPOSE} up -d --build"
             }
         }
     }
